@@ -2,34 +2,44 @@
 
 Talk Stock AI is a rule-based Natural Language to SQL engine for supply chain analytics.
 
-It allows users to ask questions about supply chain data using natural language. The system identifies predefined query patterns, generates SQL dynamically, executes the SQL using Apache DataFusion, and displays the results through a Streamlit interface.
+It allows users to ask questions about supply chain data using natural language. The system identifies predefined query patterns, generates SQL queries dynamically, executes them using Apache DataFusion, and displays the results through a Streamlit interface.
 
 ## Features
 
 - Natural language querying of supply chain data
-- Rule-based NLP to SQL conversion
-- Dynamic SQL generation using dataset column mappings
+- Rule-based Natural Language Processing (NLP) to SQL conversion
+- Dynamic SQL query generation
+- Supply chain revenue and product analysis
+- Supplier performance analysis
+- Data processing using Polars
 - SQL execution using Apache DataFusion
-- High-performance data processing using Polars and PyArrow
-- Interactive Streamlit interface
-- Automated tests using pytest
+- Data handling using PyArrow
+- Interactive Streamlit web interface
+- Automated testing using pytest
 
 ## Architecture
 
 ```text
 User
-  ↓
+  |
+  v
 Streamlit UI
-  ↓
+  |
+  v
 Rule-based NLP Processor
-  ↓
+  |
+  v
 SQL Query
-  ↓
+  |
+  v
 Apache DataFusion
-  ↓
+  |
+  v
 Polars / PyArrow
-  ↓
+  |
+  v
 Result
+```
 
 ## Technologies Used
 
@@ -38,74 +48,166 @@ Result
 - Apache DataFusion
 - PyArrow
 - Streamlit
+- Plotly
 - Pytest
 
-Project Structure
+## Project Structure
+
+```text
 TalkStockAI/
-│
+|
 ├── data/
 │   └── supply_chain_data.csv
-│
+|
 ├── src/
+│   ├── __init__.py
 │   ├── data_loader.py
 │   ├── query_engine.py
-│   ├── rules.py
-│   └── __init__.py
-│
+│   └── rules.py
+|
 ├── tests/
 │   └── test_queries.py
-│
+|
 ├── app.py
 ├── README.md
-└── .gitignore
+├── .gitignore
+└── TalkStockAI.iml
+```
 
-Example Queries
+## Supported Queries
 
-The application supports questions such as:
+The application supports natural language questions such as:
 
-Show total revenue
-Show average price
-Show top 5
-Show supplier revenue
-Show total quantity
-Show maximum revenue
-Show minimum revenue
-Show average revenue
-Show top supplier
-Show bottom supplier
+- Show total revenue
+- Show maximum revenue
+- Show minimum revenue
+- Show average revenue
+- Show top 5 products
+- Show bottom products
+- Show total quantity
+- Show average price
+- Show maximum price
+- Show minimum price
+- Show supplier revenue
+- Show top supplier
+- Show bottom supplier
+- Show revenue by SKU
+- Show quantity by supplier
+- Show highest priced SKU
+- Show cheapest SKU
+- Show revenue contribution
+- Show supplier count
 
-Installation
+## Dataset
 
-Clone the repository:
+The project uses a supply chain dataset containing information about:
 
+- Products
+- SKUs
+- Prices
+- Product availability
+- Products sold
+- Revenue
+- Stock levels
+- Lead times
+- Order quantities
+- Shipping information
+- Suppliers
+- Locations
+- Production volumes
+- Manufacturing costs
+- Inspection results
+- Defect rates
+- Transportation modes
+
+## Installation
+
+### 1. Clone the Repository
+
+```bash
 git clone https://github.com/Sridharshini25/TalkStockAI.git
+```
+
+Move into the project directory:
+
+```bash
 cd TalkStockAI
+```
 
-Create a virtual environment:
+### 2. Create a Virtual Environment
 
+```bash
 python -m venv .venv
+```
 
-Activate the virtual environment on Windows:
+### 3. Activate the Virtual Environment
 
+For Windows PowerShell:
+
+```powershell
 .venv\Scripts\Activate.ps1
+```
 
-Install the required packages:
+### 4. Install Required Libraries
 
+```bash
 pip install polars pyarrow datafusion streamlit plotly pytest
-Run the Application
+```
 
-Start the Streamlit application:
+## Run the Application
 
+Start the Streamlit application using:
+
+```bash
 streamlit run app.py
+```
 
-The application will open in your browser.
+The application will open in your web browser.
 
-Run Tests
+You can then enter questions such as:
 
-Run the test suite using:
+```text
+Show total revenue
+```
 
+or:
+
+```text
+Show supplier revenue
+```
+
+and click **Analyze** to view the results.
+
+## Run Tests
+
+To run the automated tests:
+
+```bash
 python -m pytest
+```
 
-Project Purpose
+The project contains tests for:
 
-This project demonstrates how natural language queries can be mapped to SQL using rule-based NLP techniques and then executed efficiently on structured supply chain data.
+- Total revenue
+- Average price
+- Total quantity
+- Top products
+- Supplier revenue
+
+## How It Works
+
+1. The user enters a question in the Streamlit interface.
+2. The question is processed by the rule-based NLP engine.
+3. The system identifies a matching predefined rule.
+4. The corresponding SQL query is generated dynamically.
+5. Apache DataFusion executes the SQL query.
+6. The result is converted into a Polars DataFrame.
+7. Streamlit displays the result to the user.
+
+## Project Purpose
+
+This project demonstrates how rule-based Natural Language Processing can be used to convert natural language questions into SQL queries and perform analytics on structured supply chain data.
+
+## Author
+
+**Sridharshini**
